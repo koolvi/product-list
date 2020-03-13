@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 15,
   },
 });
 
