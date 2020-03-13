@@ -8,18 +8,22 @@ import {
 import Checkbox from '../Checkbox/index';
 
 const Product = (props) => {
-  const { value, name } = props;
+  const {
+    checked,
+    name,
+    onPress,
+  } = props;
+  const result = (checked)
+    ? { textDecorationLine: 'line-through', color: 'gray', ...styles.nameProduct }
+    : { color: 'white', ...styles.nameProduct}
 
   return (
     <TouchableOpacity
-      onPress={() => {}}
+      onPress={onPress}
       style={styles.container}
     >
-        <Checkbox value={value}/>
-        <Text style={value
-          ? { textDecorationLine: 'line-through', color: 'gray', ...styles.nameProduct }
-          : { color: 'white', ...styles.nameProduct}
-        }>
+        <Checkbox value={checked}/>
+        <Text style={result}>
           {name}
         </Text>
     </TouchableOpacity>

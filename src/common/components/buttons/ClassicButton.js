@@ -1,25 +1,21 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
   TouchableOpacity,
 } from 'react-native';
 
 import colors from '../../constants/colors';
 
 
-const ClassicButton = () => {
+const ClassicButton = (props) => {
+  const { children } = props;
+
   return (
     <TouchableOpacity
       onPress={() => {}}
       style={styles.button}
     >
-      <Text style={styles.nameButton}>
-        Добавить
-      </Text>
-      <Text style={styles.nameButton}>
-        категорию
-      </Text>
+      {children}
     </TouchableOpacity>
   );
 };
@@ -34,13 +30,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-  },
-  nameButton: {
-    fontSize: 15,
-    color: colors.PRIMARY,
-    textTransform: 'uppercase',
-    marginRight: 5,
-    marginLeft: 5,
   },
 });
 

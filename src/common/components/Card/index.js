@@ -11,8 +11,24 @@ import IconButton from '../buttons/IconButton';
 import AddIcon from '../buttons/icons/AddIcon';
 import DeleteIcon from '../buttons/icons/DeleteIcon';
 
+
+const renderProducts = (allProducts) => {
+  console.log(allProducts);
+  return allProducts.map(product => (
+    <Product
+      key={product.id}
+      checked={product.checked}
+      name={product.name}
+    />
+  ))
+};
+
 const Card = (props) => {
-  const { nameCategory, color } = props;
+  const {
+    allProducts,
+    nameCategory,
+    color,
+  } = props;
   return (
     <>
       <Text style={{ color: color, ...styles.nameCategory }}>
@@ -21,10 +37,7 @@ const Card = (props) => {
 
       <View style={styles.container}>
         <View style={styles.productList}>
-          <Product value={false} name="Морковка" />
-          <Product value={false} name="Капуста белая, мал" />
-          <Product value name="Луковичка, красный сорт" />
-          <Product value={false} name="Капуста" />
+          {renderProducts(allProducts)}
         </View>
 
         <View style={styles.controlPanel}>

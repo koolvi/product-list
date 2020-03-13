@@ -12,16 +12,14 @@ import CheckboxOutlineIcon from './icons/CheckboxOutlineIcon';
 const Checkbox = (props) => {
   const { value } = props;
 
-  if (value) return (
+  return (
     <View style={styles.container} >
-      <CheckboxIcon style={styles.checkbox} />
+      {value
+        ? <CheckboxIcon />
+        : <CheckboxOutlineIcon />
+      }
     </View>
-  )
-    return (
-    <View style={styles.container} >
-      <CheckboxOutlineIcon />
-    </View>
-    )
+  );
 };
 
 const styles = StyleSheet.create({
