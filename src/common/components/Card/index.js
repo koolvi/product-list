@@ -12,13 +12,13 @@ import AddIcon from '../buttons/icons/AddIcon';
 import DeleteIcon from '../buttons/icons/DeleteIcon';
 
 
-const renderProducts = (allProducts) => {
+const renderProducts = (allProducts, onSetChecked) => {
   console.log(allProducts);
   return allProducts.map(product => (
     <Product
       key={product.id}
-      checked={product.checked}
-      name={product.name}
+      product={product}
+      onSetChecked={onSetChecked}
     />
   ))
 };
@@ -28,6 +28,7 @@ const Card = (props) => {
     allProducts,
     nameCategory,
     color,
+    onSetChecked,
   } = props;
   return (
     <>
@@ -37,7 +38,7 @@ const Card = (props) => {
 
       <View style={styles.container}>
         <View style={styles.productList}>
-          {renderProducts(allProducts)}
+          {renderProducts(allProducts, onSetChecked)}
         </View>
 
         <View style={styles.controlPanel}>
