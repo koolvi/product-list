@@ -3,47 +3,34 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import Title from '../../common/components/Title';
+import EmptyBlockCategory from './EmptyBlockCategory';
 import Card from '../../common/components/Card/index';
 import AddNewCategory from './AddNewCategory';
+import * as actionCreatorsProducts from '../../store/actions/products/actionCreators';
 
-const MainScreen = () => {
+const MainScreen = (props) => {
+  const { categories, products, onSetChecked } = props;
+
   return (
     <ScrollView style={styles.main}>
       <Title />
 
-      <Card
-        nameCategory="Молочка"
-        color="#DDBBFF"
-        allProducts={[
-          { id: 0, checked: false, name: "Морковка, 2 шт" },
-          { id: 1, checked: false, name: "Капуста белая, мал" },
-          { id: 2, checked: true, name: "Луковичка, красный сорт" },
-          { id: 3, checked: false, name: "Капуста" },
-        ]}
-      />
-      <Card
-        nameCategory="Овощи, фрукты"
-        color="#FFD88B"
-        allProducts={[
-          { id: 0, checked: true, name: "Морковка, 2 шт" },
-          { id: 1, checked: true, name: "Капуста белая, мал" },
-          { id: 2, checked: true, name: "Луковичка, красный сорт" },
-          { id: 3, checked: false, name: "Капуста" },
-        ]}
-      />
-      <Card
-        nameCategory="Мясо"
-        color="#87B7FF"
-        allProducts={[
-          { id: 0, checked: false, name: "Морковка, 2 шт" },
-          { id: 1, checked: true, name: "Капуста белая, мал" },
-          { id: 2, checked: true, name: "Луковичка, красный сорт" },
-          { id: 3, checked: false, name: "Капуста" },
-        ]}
-      />
-
+      {(categories.length === 0)
+        ? <EmptyBlockCategory />
+        : (
+          categories.map(category => (
+            <Card
+              key={category.id}
+              nameCategory={category.name}
+              color={category.color}
+              allProducts={products.filter(objProduct => category.id === objProduct.idCategory)}
+              onSetChecked={onSetChecked}
+            />))
+        )
+      }
       <AddNewCategory />
     </ScrollView>
   );
@@ -55,4 +42,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainScreen;
+const mapStateToProps = state => ({
+  categories: state.categories.categories,
+  products: state.products.products,
+});
+
+const mapDispatchToProps = {
+  onSetChecked: actionCreatorsProducts.setChecked,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
