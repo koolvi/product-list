@@ -11,7 +11,12 @@ import colors from '../../common/constants/colors';
 const AddNewCategory = () => {
   return (
     <View style={styles.containerButton}>
-      <ClassicButton>
+      <ClassicButton
+        styleButton={{
+          borderRadiusButton: 50,
+          widthButton: '70%',
+          heightButton: 50,
+        }}>
         <Text style={styles.nameButton}>
           Добавить
         </Text>

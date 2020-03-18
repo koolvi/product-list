@@ -18,6 +18,7 @@ const MainScreen = (props) => {
     products,
     onSetChecked,
     onDeleteCategory,
+    onSaveNewProduct,
   } = props;
 
   return (
@@ -35,6 +36,7 @@ const MainScreen = (props) => {
               allProducts={products.filter(objProduct => category.id === objProduct.idCategory)}
               onSetChecked={onSetChecked}
               onDeleteCategory={onDeleteCategory}
+              onSaveNewProduct={onSaveNewProduct}
             />))
         )
       }
@@ -57,6 +59,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   onSetChecked: actionCreatorsProducts.setChecked,
   onDeleteCategory: actionCreatorsCategories.deleteCategory,
+  onSaveNewProduct: actionCreatorsProducts.saveProduct,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

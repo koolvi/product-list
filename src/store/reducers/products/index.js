@@ -29,6 +29,14 @@ const getProductsAfterDelete = (products, idCategoryDelete) => {
   return res;
 };
 
+const getProductsAfterSaveProduct = (products, payload) => {
+  const { idCategory, nameProduct } = payload;
+  const idNewProduct = products[products.length - 1].id + 1;
+  const newProduct = { id: idNewProduct, idCategory: idCategory, checked: false, name: nameProduct };
+  const res = [...products, newProduct];
+  return res;
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_PRODUCT_CHECKED: return {
@@ -38,6 +46,10 @@ export default (state = initialState, action) => {
     case actionTypes.DELETE_CATEGORY: return {
       ...state,
       products: getProductsAfterDelete(state.products, action.payload),
+    };
+    case actionTypes.SAVE_PRODUCT: return {
+      ...state,
+      products: getProductsAfterSaveProduct(state.products, action.payload),
     };
     default: return state;
   }
