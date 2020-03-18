@@ -3,7 +3,7 @@ import { Svg, Path } from 'react-native-svg';
 import colors from '../../../constants/colors';
 
 const CheckboxIcon = (props) => {
-  const { color = colors.PRIMARY } = props;
+  const { color = colors.SELECTED } = props;
 
   return (
     <Svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">

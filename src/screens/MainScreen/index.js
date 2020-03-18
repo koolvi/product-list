@@ -10,9 +10,15 @@ import EmptyBlockCategory from './EmptyBlockCategory';
 import Card from '../../common/components/Card/index';
 import AddNewCategory from './AddNewCategory';
 import * as actionCreatorsProducts from '../../store/actions/products/actionCreators';
+import * as actionCreatorsCategories from '../../store/actions/categories/actionCreators';
 
 const MainScreen = (props) => {
-  const { categories, products, onSetChecked } = props;
+  const {
+    categories,
+    products,
+    onSetChecked,
+    onDeleteCategory,
+  } = props;
 
   return (
     <ScrollView style={styles.main}>
@@ -24,10 +30,11 @@ const MainScreen = (props) => {
           categories.map(category => (
             <Card
               key={category.id}
-              nameCategory={category.name}
+              category={category}
               color={category.color}
               allProducts={products.filter(objProduct => category.id === objProduct.idCategory)}
               onSetChecked={onSetChecked}
+              onDeleteCategory={onDeleteCategory}
             />))
         )
       }
@@ -49,6 +56,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   onSetChecked: actionCreatorsProducts.setChecked,
+  onDeleteCategory: actionCreatorsCategories.deleteCategory,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
