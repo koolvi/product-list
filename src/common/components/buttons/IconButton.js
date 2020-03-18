@@ -6,12 +6,17 @@ import {
 
 
 const IconButton = (props) => {
-  const { icon, borderColor } = props;
+  const {
+    icon,
+    borderColor,
+    marginBottom,
+    onPress,
+  } = props;
 
   return (
     <TouchableOpacity
-      onPress={() => {}}
-      style={{ borderColor, ...styles.button }}
+      onPress={onPress}
+      style={{ borderColor, marginBottom: marginBottom, ...styles.button }}
     >
       {icon}
     </TouchableOpacity>

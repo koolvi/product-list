@@ -24,22 +24,21 @@ const getProducts = (products, product) => {
   return res;
 };
 
+const getProductsAfterDelete = (products, idCategoryDelete) => {
+  const res = products.filter(product => product.idCategory !== idCategoryDelete);
+  return res;
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_PRODUCT_CHECKED: return {
       ...state,
       products: getProducts(state.products, action.payload),
     };
-    // case actionTypes.ADD_CHAMBER: return {
-    //   ...state,
-    //   chambers: [...state.chambers, action.payload],
-    // };
-    
-    // case actionTypes.DELETE_CHAMBER: return {
-    //   ...state,
-    //   chambers: deleteChamber(state.chambers, action.payload),
-    // };
-
+    case actionTypes.DELETE_CATEGORY: return {
+      ...state,
+      products: getProductsAfterDelete(state.products, action.payload),
+    };
     default: return state;
   }
 };

@@ -26,14 +26,15 @@ const renderProducts = (allProducts, onSetChecked) => {
 const Card = (props) => {
   const {
     allProducts,
-    nameCategory,
+    category,
     color,
     onSetChecked,
+    onDeleteCategory,
   } = props;
   return (
     <>
       <Text style={{ color: color, ...styles.nameCategory }}>
-        {nameCategory}
+        {category.name}
       </Text>
 
       <View style={styles.container}>
@@ -42,8 +43,17 @@ const Card = (props) => {
         </View>
 
         <View style={styles.controlPanel}>
-          <IconButton icon={<AddIcon color={color} />} borderColor={color} />
-          <IconButton icon={<DeleteIcon />} borderColor={colors.DANGER}/>
+          <IconButton
+            icon={<AddIcon color={color} />}
+            borderColor={color}
+            onPress={() => console.log('жмак на +')}
+          />
+          <IconButton
+            icon={<DeleteIcon />}
+            borderColor={colors.DANGER}
+            marginBottom={15}
+            onPress={() => onDeleteCategory(category.id)}
+          />
         </View>
       </View>
     </>

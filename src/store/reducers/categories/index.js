@@ -1,3 +1,4 @@
+import * as actionTypes from '../../actions/categories/actionTypes';
 
 
 const initialState = {
@@ -8,9 +9,17 @@ const initialState = {
   ],
 };
 
+const getCategories = (categories, idCategoryDel) => {
+  const res = categories.filter(category => category.id !== idCategoryDel)
+  return res;
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
-
+    case actionTypes.DELETE_CATEGORY: return {
+      ...state,
+      categories: getCategories(state.categories, action.payload),
+    };
     default: return state;
   }
 };

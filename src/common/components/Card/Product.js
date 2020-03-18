@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import Checkbox from '../Checkbox/index';
+import colors from '../../constants/colors';
 
 const Product = (props) => {
   const {
@@ -20,7 +21,7 @@ const Product = (props) => {
   } = product;
 
   const result = (checked)
-    ? { textDecorationLine: 'line-through', color: 'gray', ...styles.nameProduct }
+    ? { textDecorationLine: 'line-through', color: colors.SELECTED, ...styles.nameProduct }
     : { color: 'white', ...styles.nameProduct}
 
   return (
