@@ -14,6 +14,13 @@ import DeleteIcon from '../buttons/icons/DeleteIcon';
 
 
 const renderProducts = (allProducts, onSetChecked) => {
+  // if(allProducts.length === 0) {
+  //   return (
+  //     <View style={styles.emptyCard}>
+  //       <Text style={styles.textEmptyCard}>..список пуст..</Text>
+  //     </View>
+  //   );
+  // } else 
   return allProducts.map(product => (
     <Product
       key={product.id}
@@ -43,6 +50,14 @@ const Card = (props) => {
 
       <View style={styles.container}>
         <View style={styles.productList}>
+          {/* {(allProducts.length === 0)
+            ? (
+              <View style={styles.emptyCard}>
+                <Text style={styles.textEmptyCard}>..список пуст..</Text>
+              </View>
+            )
+            : null
+          } */}
           {renderProducts(allProducts, onSetChecked)}
           {isShowForm
             ? <FormAddProduct
@@ -64,7 +79,7 @@ const Card = (props) => {
           />
           <IconButton
             icon={<DeleteIcon />}
-            borderColor={colors.DANGER}
+            borderColor={colors.PRIMARY}
             marginBottom={15}
             onPress={() => onDeleteCategory(category.id)}
           />
@@ -99,6 +114,16 @@ const styles = StyleSheet.create({
   controlPanel: {
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  emptyCard: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 130,
+  },
+  textEmptyCard: {
+    fontSize: 15,
+    color: colors.SELECTED,
+    marginLeft: 10,
   },
 });
 

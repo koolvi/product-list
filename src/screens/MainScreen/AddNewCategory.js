@@ -8,10 +8,13 @@ import {
 import ClassicButton from '../../common/components/buttons/ClassicButton';
 import colors from '../../common/constants/colors';
 
-const AddNewCategory = () => {
+const AddNewCategory = (props) => {
+  const { onPress } = props;
+
   return (
     <View style={styles.containerButton}>
       <ClassicButton
+        onPress={onPress}
         styleButton={{
           borderRadiusButton: 50,
           widthButton: '70%',
@@ -20,9 +23,9 @@ const AddNewCategory = () => {
         <Text style={styles.nameButton}>
           Добавить
         </Text>
-        <Text style={styles.nameButton}>
-          категорию
-        </Text>
+        {/* <Text style={styles.nameButton}>
+          список
+        </Text> */}
       </ClassicButton>
     </View>
   );

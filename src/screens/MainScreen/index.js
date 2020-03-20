@@ -14,6 +14,7 @@ import * as actionCreatorsCategories from '../../store/actions/categories/action
 
 const MainScreen = (props) => {
   const {
+    navigation,
     categories,
     products,
     onSetChecked,
@@ -40,7 +41,7 @@ const MainScreen = (props) => {
             />))
         )
       }
-      <AddNewCategory />
+      <AddNewCategory onPress={() => navigation.navigate("FormNewCategory")}/>
     </ScrollView>
   );
 };
