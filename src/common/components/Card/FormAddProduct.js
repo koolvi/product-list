@@ -30,14 +30,9 @@ const FormAddProduct = (props) => {
       />
       <View style={styles.controlPanel}>
         <ClassicButton
-          styleButton={{
-            borderRadiusButton: 50,
-            widthButton: '48%',
-            heightButton: 50,
-          }}
+          style={styles.button}
           onPress={() => {
             onCancel();
-            setNameNewProduct('');
           }}
         >
           <Text style={styles.nameButton}>
@@ -46,14 +41,9 @@ const FormAddProduct = (props) => {
         </ClassicButton>
 
         <ClassicButton
-          styleButton={{
-            borderRadiusButton: 50,
-            widthButton: '48%',
-            heightButton: 50,
-          }}
+          style={styles.button}
           onPress={() => {
             onSave(nameNewProduct);
-            setNameNewProduct('');
             onCancel();
           }}
         >
@@ -93,6 +83,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     marginRight: 5,
     marginLeft: 5,
+  },
+  button: {
+    borderRadius: 50,
+    width: '48%',
+    height: 50,
   },
 });
 

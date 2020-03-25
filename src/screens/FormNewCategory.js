@@ -31,30 +31,24 @@ const FormNewCategory = (props) => {
 
         <View style={styles.containerButton}>
           <ClassicButton
-            styleButton={{
-              borderRadiusButton: 50,
-              widthButton: '100%',
-              heightButton: 50,
-            }}
+            style={styles.button}
             onPress={() => {
               onSaveNewCategory(nameNewCategory);
-              setNameNewCategory('');
               navigation.goBack();
             }}
           >
             <Text style={styles.nameButton}>
               Добавить
             </Text>
-            {/* <Text style={styles.nameButton}>
-              список
-            </Text> */}
+            <Text style={styles.nameButton}>
+              категорию
+            </Text>
           </ClassicButton>
         </View>
 
         <TouchableOpacity
           style={styles.containerButtonCancel}
           onPress={() => {
-            setNameNewCategory('');
             navigation.goBack();
           }}
         >
@@ -112,6 +106,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     marginRight: 5,
     marginLeft: 5,
+  },
+  button: {
+    borderRadius: 50,
+    width: '100%',
+    height: 50,
   },
 });
 

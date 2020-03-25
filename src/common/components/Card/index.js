@@ -50,20 +50,23 @@ const Card = (props) => {
 
       <View style={styles.container}>
         <View style={styles.productList}>
-          {/* {(allProducts.length === 0)
+          {((allProducts.length === 0) && (!isShowForm))
             ? (
               <View style={styles.emptyCard}>
                 <Text style={styles.textEmptyCard}>..список пуст..</Text>
               </View>
+            ) : (
+              <>
+                {renderProducts(allProducts, onSetChecked)}
+              </>
             )
-            : null
-          } */}
-          {renderProducts(allProducts, onSetChecked)}
-          {isShowForm
-            ? <FormAddProduct
-              onCancel={() => setShowForm(false)}
-              onSave={(name) => onSaveNewProduct(category.id, name)}
-              />
+          }
+
+          {(isShowForm)
+            ? (<FormAddProduct
+                onCancel={() => setShowForm(false)}
+                onSave={(name) => onSaveNewProduct(category.id, name)}
+              />)
             : null
           }
         </View>

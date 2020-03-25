@@ -15,17 +15,13 @@ const AddNewCategory = (props) => {
     <View style={styles.containerButton}>
       <ClassicButton
         onPress={onPress}
-        styleButton={{
-          borderRadiusButton: 50,
-          widthButton: '70%',
-          heightButton: 50,
-        }}>
+        style={styles.button}>
         <Text style={styles.nameButton}>
           Добавить
         </Text>
-        {/* <Text style={styles.nameButton}>
-          список
-        </Text> */}
+        <Text style={styles.nameButton}>
+          категорию
+        </Text>
       </ClassicButton>
     </View>
   );
@@ -43,6 +39,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     marginRight: 5,
     marginLeft: 5,
+  },
+  button: {
+    borderRadius: 50,
+    width: '70%',
+    height: 50,
   },
 });
 

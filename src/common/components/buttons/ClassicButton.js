@@ -8,17 +8,14 @@ import colors from '../../constants/colors';
 
 
 const ClassicButton = (props) => {
-  const { styleButton, onPress, children } = props;
-  const { borderRadiusButton, widthButton, heightButton } = styleButton;
+  const { style, onPress, children } = props;
 
   return (
     <TouchableOpacity
       onPress={onPress}
       style={{
-        borderRadius: borderRadiusButton,
-        width: widthButton,
-        height: heightButton,
-        ...styles.button
+        ...styles.button,
+        ...style,
       }}
     >
       {children}
