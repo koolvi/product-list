@@ -14,10 +14,12 @@ import * as actionCreatorsCategories from '../../store/actions/categories/action
 
 const MainScreen = (props) => {
   const {
+    navigation,
     categories,
     products,
     onSetChecked,
     onDeleteCategory,
+    onSaveNewProduct,
   } = props;
 
   return (
@@ -35,10 +37,11 @@ const MainScreen = (props) => {
               allProducts={products.filter(objProduct => category.id === objProduct.idCategory)}
               onSetChecked={onSetChecked}
               onDeleteCategory={onDeleteCategory}
+              onSaveNewProduct={onSaveNewProduct}
             />))
         )
       }
-      <AddNewCategory />
+      <AddNewCategory onPress={() => navigation.navigate("FormNewCategory")}/>
     </ScrollView>
   );
 };
@@ -57,6 +60,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   onSetChecked: actionCreatorsProducts.setChecked,
   onDeleteCategory: actionCreatorsCategories.deleteCategory,
+  onSaveNewProduct: actionCreatorsProducts.saveProduct,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

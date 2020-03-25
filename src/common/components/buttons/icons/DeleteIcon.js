@@ -3,7 +3,7 @@ import { Svg, Path } from 'react-native-svg';
 import colors from '../../../constants/colors';
 
 const DeleteIcon = (props) => {
-  const { color = colors.DANGER } = props;
+  const { color = colors.PRIMARY } = props;
   return (
     <Svg height="30" viewBox="0 0 24 24" width="30">
       <Path d="M0 0h24v24H0V0z" fill="none"/>

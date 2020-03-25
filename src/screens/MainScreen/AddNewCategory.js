@@ -8,10 +8,14 @@ import {
 import ClassicButton from '../../common/components/buttons/ClassicButton';
 import colors from '../../common/constants/colors';
 
-const AddNewCategory = () => {
+const AddNewCategory = (props) => {
+  const { onPress } = props;
+
   return (
     <View style={styles.containerButton}>
-      <ClassicButton>
+      <ClassicButton
+        onPress={onPress}
+        style={styles.button}>
         <Text style={styles.nameButton}>
           Добавить
         </Text>
@@ -35,6 +39,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     marginRight: 5,
     marginLeft: 5,
+  },
+  button: {
+    borderRadius: 50,
+    width: '70%',
+    height: 50,
   },
 });
 

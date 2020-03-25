@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,13 +7,20 @@ import {
 
 import Product from './Product';
 import colors from '../../constants/colors';
+import FormAddProduct from './FormAddProduct';
 import IconButton from '../buttons/IconButton';
 import AddIcon from '../buttons/icons/AddIcon';
 import DeleteIcon from '../buttons/icons/DeleteIcon';
 
 
 const renderProducts = (allProducts, onSetChecked) => {
-  console.log(allProducts);
+  // if(allProducts.length === 0) {
+  //   return (
+  //     <View style={styles.emptyCard}>
+  //       <Text style={styles.textEmptyCard}>..список пуст..</Text>
+  //     </View>
+  //   );
+  // } else 
   return allProducts.map(product => (
     <Product
       key={product.id}
@@ -30,7 +37,11 @@ const Card = (props) => {
     color,
     onSetChecked,
     onDeleteCategory,
+    onSaveNewProduct,
   } = props;
+
+  const [isShowForm, setShowForm] = useState(false);
+
   return (
     <>
       <Text style={{ color: color, ...styles.nameCategory }}>
@@ -39,22 +50,45 @@ const Card = (props) => {
 
       <View style={styles.container}>
         <View style={styles.productList}>
-          {renderProducts(allProducts, onSetChecked)}
+          {((allProducts.length === 0) && (!isShowForm))
+            ? (
+              <View style={styles.emptyCard}>
+                <Text style={styles.textEmptyCard}>..список пуст..</Text>
+              </View>
+            ) : (
+              <>
+                {renderProducts(allProducts, onSetChecked)}
+              </>
+            )
+          }
+
+          {(isShowForm)
+            ? (<FormAddProduct
+                onCancel={() => setShowForm(false)}
+                onSave={(name) => onSaveNewProduct(category.id, name)}
+              />)
+            : null
+          }
         </View>
 
-        <View style={styles.controlPanel}>
+        {isShowForm
+          ? null
+          : (
+            <View style={styles.controlPanel}>
           <IconButton
             icon={<AddIcon color={color} />}
             borderColor={color}
-            onPress={() => console.log('жмак на +')}
+            onPress={() => setShowForm(true)}
           />
           <IconButton
             icon={<DeleteIcon />}
-            borderColor={colors.DANGER}
+            borderColor={colors.PRIMARY}
             marginBottom={15}
             onPress={() => onDeleteCategory(category.id)}
           />
         </View>
+          )}
+        
       </View>
     </>
   );
@@ -83,6 +117,16 @@ const styles = StyleSheet.create({
   controlPanel: {
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  emptyCard: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 130,
+  },
+  textEmptyCard: {
+    fontSize: 15,
+    color: colors.SELECTED,
+    marginLeft: 10,
   },
 });
 

@@ -8,12 +8,15 @@ import colors from '../../constants/colors';
 
 
 const ClassicButton = (props) => {
-  const { children } = props;
+  const { style, onPress, children } = props;
 
   return (
     <TouchableOpacity
-      onPress={() => {}}
-      style={styles.button}
+      onPress={onPress}
+      style={{
+        ...styles.button,
+        ...style,
+      }}
     >
       {children}
     </TouchableOpacity>
@@ -24,9 +27,6 @@ const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
     borderColor: colors.PRIMARY,
-    borderRadius: 50,
-    height: 50,
-    width: '70%',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',

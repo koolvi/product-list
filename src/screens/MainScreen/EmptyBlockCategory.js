@@ -9,7 +9,7 @@ import {
 const EmptyBlockCategory = () => {
   return (
   <View style={styles.container}>
-    <Text style={styles.text}>Список пуст</Text>
+    <Text style={styles.text}>..пусто..</Text>
   </View>
   );
 };

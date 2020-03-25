@@ -1,4 +1,5 @@
 import * as actionTypes from '../../actions/products/actionTypes';
+import * as actionTypesCategories from '../../actions/categories/actionTypes';
 
 
 const initialState = {
@@ -26,6 +27,16 @@ const getProducts = (products, product) => {
 
 const getProductsAfterDelete = (products, idCategoryDelete) => {
   const res = products.filter(product => product.idCategory !== idCategoryDelete);
+  console.log('idCategoryDelete=' ,idCategoryDelete);
+  console.log('res', res);
+  return res;
+};
+
+const getProductsAfterSaveProduct = (products, payload) => {
+  const { idCategory, nameProduct } = payload;
+  const idNewProduct = (products.length === 0) ? 0 : products[products.length - 1].id + 1;
+  const newProduct = { id: idNewProduct, idCategory: idCategory, checked: false, name: nameProduct };
+  const res = [...products, newProduct];
   return res;
 };
 
@@ -35,9 +46,13 @@ export default (state = initialState, action) => {
       ...state,
       products: getProducts(state.products, action.payload),
     };
-    case actionTypes.DELETE_CATEGORY: return {
+    case actionTypesCategories.DELETE_CATEGORY: return {
       ...state,
       products: getProductsAfterDelete(state.products, action.payload),
+    };
+    case actionTypes.SAVE_PRODUCT: return {
+      ...state,
+      products: getProductsAfterSaveProduct(state.products, action.payload),
     };
     default: return state;
   }
