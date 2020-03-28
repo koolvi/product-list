@@ -10,11 +10,11 @@ import { connect } from 'react-redux';
 
 import ClassicButton from '../common/components/buttons/ClassicButton';
 import colors from '../common/constants/colors';
-import * as actionCreatorsCategory from '../store/actions/categories/actionCreators';
+import * as actionCreatorsThunk from '../store/actions/categories/actionCreatorsThunk';
 
 
 const FormNewCategory = (props) => {
-  const { navigation, onSaveNewCategory } = props;
+  const { navigation, onSaveCategoryAsync } = props;
   const [nameNewCategory, setNameNewCategory] = useState('');
 
   return (
@@ -33,7 +33,7 @@ const FormNewCategory = (props) => {
           <ClassicButton
             style={styles.button}
             onPress={() => {
-              onSaveNewCategory(nameNewCategory);
+              onSaveCategoryAsync(nameNewCategory);
               navigation.goBack();
             }}
           >
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = {
-  onSaveNewCategory: actionCreatorsCategory.saveCategory,
+  onSaveCategoryAsync: actionCreatorsThunk.saveCategoryAsync,
 };
 
 export default connect(null, mapDispatchToProps)(FormNewCategory);

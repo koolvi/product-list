@@ -9,3 +9,8 @@ export const saveProduct = (idCategory, nameProduct) => ({
   type: actionTypes.SAVE_PRODUCT,
   payload: { idCategory, nameProduct },
 });
+
+export const setProducts = products => ({
+  type: actionTypes.SET_PRODUCTS,
+  payload: products,
+});
