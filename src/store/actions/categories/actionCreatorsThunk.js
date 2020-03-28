@@ -21,10 +21,12 @@ export const loadCategories = () => {
 export const deleteCategoryAsync = idCategoryDelete => {
   return (dispatch, getState) => {
     dispatch(actionCreators.deleteCategory(idCategoryDelete));
-    const categoriesState = getState().categories;
+    // получение массива категорий и массива продуктов в state
+    // далее: в categoriesState кладется массив из categories
+    const { categories: categoriesState, products: productsState } = getState();
+
     const categoriesStateStr = JSON.stringify(categoriesState);
     AsyncStorage.setItem('categories', categoriesStateStr);
-    const productsState = getState().products;
     const productsStateStr = JSON.stringify(productsState);
     AsyncStorage.setItem('products', productsStateStr);
   };
