@@ -3,9 +3,9 @@ import * as actionTypes from '../../actions/categories/actionTypes';
 
 const initialState = {
   categories: [
-    { id: 0, name: "Овощи", color: "#7a7fff" },
-    { id: 1, name: "Фрукты", color: "#36ffc3" },
-    { id: 2, name: "Молочка", color: "#ff9373" },
+    // { id: 0, name: "Овощи", color: "#7a7fff" },
+    // { id: 1, name: "Фрукты", color: "#36ffc3" },
+    // { id: 2, name: "Молочка", color: "#ff9373" },
   ],
 };
 
@@ -53,6 +53,10 @@ export default (state = initialState, action) => {
     case actionTypes.SAVE_CATEGORY: return {
       ...state,
       categories: getCategoriesAfterSave(state.categories, action.payload),
+    };
+    case actionTypes.SET_CATEGORIES: return {
+      ...state,
+      categories: action.payload,
     };
     default: return state;
   }

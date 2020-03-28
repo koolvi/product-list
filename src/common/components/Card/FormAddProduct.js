@@ -44,7 +44,7 @@ const FormAddProduct = (props) => {
           style={styles.button}
           onPress={() => {
             onSave(nameNewProduct);
-            onCancel();
+            setNameNewProduct('');
           }}
         >
           <Text style={styles.nameButton}>

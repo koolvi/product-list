@@ -3,13 +3,15 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
 
 import rootReducer from './store/rootReducer';
+import SplashScreen from './screens/SplashScreen';
 import MainScreen from './screens/MainScreen';
 import FormNewCategory from './screens/FormNewCategory';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(reduxThunk));
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -17,6 +19,11 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen
+            name={"Splash"}
+            component={SplashScreen}
+            options={{ header: () => null }}
+          />
           <Stack.Screen
             name={"Main"}
             component={MainScreen}
@@ -28,7 +35,24 @@ const App = () => {
             options={{
               header: () => null,
               cardStyle: { backgroundColor: 'transparent' },
+              cardOverlayEnabled: true,
+              headerMode: 'none',
               mode: 'modal',
+              cardStyleInterpolator: ({ current: { progress } }) => ({
+                cardStyle: {
+                  opacity: progress.interpolate({
+                    inputRange: [0, 0.5, 0.9, 1],
+                    outputRange: [0, 0.25, 0.7, 1],
+                  }),
+                },
+                overlayStyle: {
+                  opacity: progress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 0.5],
+                    extrapolate: 'clamp',
+                  }),
+                },
+              }),
             }}
           />
         </Stack.Navigator>

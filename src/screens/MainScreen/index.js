@@ -9,8 +9,10 @@ import Title from '../../common/components/Title';
 import EmptyBlockCategory from './EmptyBlockCategory';
 import Card from '../../common/components/Card/index';
 import AddNewCategory from './AddNewCategory';
+import * as actionCreatorsThunkProducts from '../../store/actions/products/actionCreatorsThunk';
+import * as actionCreatorsThunkCategories from '../../store/actions/categories/actionCreatorsThunk';
 import * as actionCreatorsProducts from '../../store/actions/products/actionCreators';
-import * as actionCreatorsCategories from '../../store/actions/categories/actionCreators';
+// import * as actionCreatorsCategories from '../../store/actions/categories/actionCreators';
 
 const MainScreen = (props) => {
   const {
@@ -19,11 +21,11 @@ const MainScreen = (props) => {
     products,
     onSetChecked,
     onDeleteCategory,
-    onSaveNewProduct,
+    onSaveProducts,
   } = props;
 
   return (
-    <ScrollView style={styles.main}>
+    <ScrollView keyboardShouldPersistTaps="handled" style={styles.main}>
       <Title />
 
       {(categories.length === 0)
@@ -37,7 +39,7 @@ const MainScreen = (props) => {
               allProducts={products.filter(objProduct => category.id === objProduct.idCategory)}
               onSetChecked={onSetChecked}
               onDeleteCategory={onDeleteCategory}
-              onSaveNewProduct={onSaveNewProduct}
+              onSaveNewProduct={onSaveProducts}
             />))
         )
       }
@@ -59,8 +61,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   onSetChecked: actionCreatorsProducts.setChecked,
-  onDeleteCategory: actionCreatorsCategories.deleteCategory,
-  onSaveNewProduct: actionCreatorsProducts.saveProduct,
+  onDeleteCategory: actionCreatorsThunkCategories.deleteCategoryAsync,
+  onSaveProducts: actionCreatorsThunkProducts.saveProductsAsync,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
