@@ -5,27 +5,21 @@ import {
   Text,
 } from 'react-native';
 
+import Header from './Header';
 import Product from './Product';
 import colors from '../../constants/colors';
 import FormAddProduct from './FormAddProduct';
-import IconButton from '../buttons/IconButton';
+import CircleButton from '../buttons/CircleButton';
 import AddIcon from '../buttons/icons/AddIcon';
-import DeleteIcon from '../buttons/icons/DeleteIcon';
 
 
-const renderProducts = (allProducts, onSetChecked) => {
-  // if(allProducts.length === 0) {
-  //   return (
-  //     <View style={styles.emptyCard}>
-  //       <Text style={styles.textEmptyCard}>..список пуст..</Text>
-  //     </View>
-  //   );
-  // } else 
+const renderProducts = (allProducts, onSetChecked, onDeleteProduct) => {
   return allProducts.map(product => (
     <Product
       key={product.id}
       product={product}
       onSetChecked={onSetChecked}
+      onDelete={onDeleteProduct}
     />
   ))
 };
@@ -38,26 +32,29 @@ const Card = (props) => {
     onSetChecked,
     onDeleteCategory,
     onSaveNewProduct,
+    onDeleteProduct,
   } = props;
 
   const [isShowForm, setShowForm] = useState(false);
 
   return (
-    <>
-      <Text style={{ color: color, ...styles.nameCategory }}>
-        {category.name}
-      </Text>
+    <View style={styles.mainContainer}>
+      <Header
+        colorContainer={color}
+        nameCategory={category.name}
+        onPress={() => onDeleteCategory(category.id)}
+      />
 
       <View style={styles.container}>
         <View style={styles.productList}>
           {((allProducts.length === 0) && (!isShowForm))
             ? (
               <View style={styles.emptyCard}>
-                <Text style={styles.textEmptyCard}>..список пуст..</Text>
+                <Text style={styles.textEmptyCard}>...в этой категории ничего нет...</Text>
               </View>
             ) : (
               <>
-                {renderProducts(allProducts, onSetChecked)}
+                {renderProducts(allProducts, onSetChecked, onDeleteProduct)}
               </>
             )
           }
@@ -67,66 +64,61 @@ const Card = (props) => {
                 onCancel={() => setShowForm(false)}
                 onSave={(name) => onSaveNewProduct(category.id, name)}
               />)
-            : null
+              : null
           }
         </View>
-
-        {isShowForm
-          ? null
-          : (
-            <View style={styles.controlPanel}>
-          <IconButton
-            icon={<AddIcon color={color} />}
-            borderColor={color}
-            onPress={() => setShowForm(true)}
-          />
-          <IconButton
-            icon={<DeleteIcon />}
-            borderColor={colors.PRIMARY}
-            marginBottom={15}
-            onPress={() => onDeleteCategory(category.id)}
-          />
-        </View>
-          )}
-        
       </View>
-    </>
+
+      {(isShowForm)
+      ? null
+      : (
+        <View style={styles.controlPanel}>
+        <CircleButton
+          icon={<AddIcon />}
+          backgroundColor={color}
+          onPress={() => setShowForm(true)}
+        />
+      </View>
+      )}
+      
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  nameCategory: {
-    fontSize: 12,
-    textAlign: 'center',
-    paddingBottom: 6,
-    textTransform: 'uppercase',
+  mainContainer: {
+    marginTop: 40,
   },
   container: {
+    marginTop: 40,
     flexDirection: 'row',
     backgroundColor: colors.SECONDARY,
     borderRadius: 10,
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 30,
+    marginBottom: 25,
   },
   productList: {
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 35,
     flex: 1,
   },
   controlPanel: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    width: '100%',
+    height: 50,
+    position: 'absolute',
+    bottom: 0,
+    alignItems: 'center',
   },
   emptyCard: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 130,
+    height: 80,
+    paddingTop: 20,
   },
   textEmptyCard: {
     fontSize: 15,
     color: colors.SELECTED,
-    marginLeft: 10,
   },
 });
 

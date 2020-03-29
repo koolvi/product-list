@@ -35,15 +35,14 @@ const styles = StyleSheet.create({
   },  
   nameButton: {
     fontSize: 15,
-    color: colors.PRIMARY,
+    fontWeight: 'bold',
+    color: colors.SECONDARY,
     textTransform: 'uppercase',
     marginRight: 5,
     marginLeft: 5,
   },
   button: {
-    borderRadius: 50,
     width: '70%',
-    height: 50,
   },
 });
 
