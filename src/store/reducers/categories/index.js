@@ -16,13 +16,13 @@ const getCategories = (categories, idCategoryDel) => {
 
 const getColorNewCategory = (categories) => {
   const colorPalette = [
-    "#7a7fff", // синий
-    "#36ffc3", // зеленый
-    "#ff9373", // оранжевый
-    "#ae70ff", // фиолетовый
-    "#15ff00", // салатовый
-    "#ff6bc4", // розовый
-    "#cf0", // желтый
+    "#f7822f", // оранжевый
+    "#402ff7", // синий
+    "#f72fcc", // розовый
+    "#00b506", // зеленый
+    "#7a04d4", // фиолетовый
+    "#72bd28", // салатовый
+    "#b0c42b", // желтый
   ];
 
   if(categories.length === 0){

@@ -11,7 +11,7 @@ const Title = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        Product list
+        My Product List
       </Text>
     </View>
   );
@@ -19,13 +19,15 @@ const Title = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 90,
+    height: 50,
     justifyContent: 'center',
+    backgroundColor: colors.PRIMARY,
+    marginBottom: 20,
   },
   title: {
-    marginLeft: 40,
-    fontSize: 40,
-    color: colors.PRIMARY,
+    marginLeft: 20,
+    fontSize: 25,
+    color: colors.SECONDARY,
     fontWeight: 'bold',
   },
 });

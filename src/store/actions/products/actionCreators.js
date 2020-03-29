@@ -14,3 +14,8 @@ export const setProducts = products => ({
   type: actionTypes.SET_PRODUCTS,
   payload: products,
 });
+
+export const deleteProduct = product => ({
+  type: actionTypes.DELETE_PRODUCT,
+  payload: product,
+});

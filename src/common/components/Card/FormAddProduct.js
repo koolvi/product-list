@@ -6,8 +6,10 @@ import {
   TextInput,
 } from 'react-native';
 
+import Input from '../Input';
 import colors from '../../constants/colors';
 import ClassicButton from '../buttons/ClassicButton';
+import ClassicButtonOutline from '../buttons/ClassicButtonOutline';
 
 
 const FormAddProduct = (props) => {
@@ -20,25 +22,24 @@ const FormAddProduct = (props) => {
 
   return (
     <View style={styles.form}>
-      <TextInput
-        style={styles.input}
-        onChangeText={text => setNameNewProduct(text)}
-        value={nameNewProduct}
+      <Input
         placeholder="Введите название продукта.."
-        placeholderTextColor={colors.SELECTED}
-        autoFocus
+        value={nameNewProduct}
+        maxLength={50}
+        onChange={text => setNameNewProduct(text)}
       />
+
       <View style={styles.controlPanel}>
-        <ClassicButton
+        <ClassicButtonOutline
           style={styles.button}
           onPress={() => {
             onCancel();
           }}
         >
-          <Text style={styles.nameButton}>
+          <Text style={{ color: colors.PRIMARY, ...styles.nameButton }}>
             Отмена
           </Text>
-        </ClassicButton>
+        </ClassicButtonOutline>
 
         <ClassicButton
           style={styles.button}
@@ -47,7 +48,7 @@ const FormAddProduct = (props) => {
             setNameNewProduct('');
           }}
         >
-          <Text style={styles.nameButton}>
+          <Text style={{ color: colors.SECONDARY, ...styles.nameButton }}>
             Добавить
           </Text>
         </ClassicButton>
@@ -61,33 +62,19 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
   },
-  input: {
-    height: 50,
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 10,
-    color: 'white',
-    marginTop: 20,
-    marginBottom: 20,
-    paddingLeft: 20,
-    fontSize: 18,
-  },
   controlPanel: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10,
   },
   nameButton: {
     fontSize: 15,
-    color: colors.PRIMARY,
     textTransform: 'uppercase',
     marginRight: 5,
     marginLeft: 5,
+    fontWeight: 'bold',
   },
   button: {
-    borderRadius: 50,
     width: '48%',
-    height: 50,
   },
 });
 

@@ -7,7 +7,7 @@ import {
 import colors from '../../constants/colors';
 
 
-const ClassicButton = (props) => {
+const ClassicButtonOutline = (props) => {
   const { style, onPress, children } = props;
 
   return (
@@ -25,7 +25,8 @@ const ClassicButton = (props) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.PRIMARY,
+    borderWidth: 1,
+    borderColor: colors.PRIMARY,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
@@ -34,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ClassicButton;
+export default ClassicButtonOutline;

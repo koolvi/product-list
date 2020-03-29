@@ -5,14 +5,12 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import Title from '../../common/components/Title';
+// import Title from '../../common/components/Title';
 import EmptyBlockCategory from './EmptyBlockCategory';
 import Card from '../../common/components/Card/index';
 import AddNewCategory from './AddNewCategory';
 import * as actionCreatorsThunkProducts from '../../store/actions/products/actionCreatorsThunk';
 import * as actionCreatorsThunkCategories from '../../store/actions/categories/actionCreatorsThunk';
-import * as actionCreatorsProducts from '../../store/actions/products/actionCreators';
-// import * as actionCreatorsCategories from '../../store/actions/categories/actionCreators';
 
 const MainScreen = (props) => {
   const {
@@ -22,11 +20,12 @@ const MainScreen = (props) => {
     onSetChecked,
     onDeleteCategory,
     onSaveProducts,
+    onDeleteProduct,
   } = props;
 
   return (
     <ScrollView keyboardShouldPersistTaps="handled" style={styles.main}>
-      <Title />
+      {/* <Title /> */}
 
       {(categories.length === 0)
         ? <EmptyBlockCategory />
@@ -40,6 +39,7 @@ const MainScreen = (props) => {
               onSetChecked={onSetChecked}
               onDeleteCategory={onDeleteCategory}
               onSaveNewProduct={onSaveProducts}
+              onDeleteProduct={onDeleteProduct}
             />))
         )
       }
@@ -60,9 +60,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onSetChecked: actionCreatorsProducts.setChecked,
+  onSetChecked: actionCreatorsThunkProducts.setCheckedProductAsync,
   onDeleteCategory: actionCreatorsThunkCategories.deleteCategoryAsync,
   onSaveProducts: actionCreatorsThunkProducts.saveProductsAsync,
+  onDeleteProduct: actionCreatorsThunkProducts.deleteProductAsync,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

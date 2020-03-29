@@ -5,16 +5,17 @@ import {
 } from 'react-native';
 
 
-const IconButton = (props) => {
+const CircleButton = (props) => {
   const {
     icon,
+    backgroundColor,
     onPress,
   } = props;
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={styles.button}
+      style={{ backgroundColor, ...styles.button }}
     >
       {icon}
     </TouchableOpacity>
@@ -23,7 +24,7 @@ const IconButton = (props) => {
 
 const styles = StyleSheet.create({
   button: {
-    width: 35,
+    width: 50,
     borderRadius: 5000,
     aspectRatio: 1,
     justifyContent: 'center',
@@ -31,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IconButton;
+export default CircleButton;

@@ -27,8 +27,6 @@ const getProducts = (products, product) => {
 
 const getProductsAfterDelete = (products, idCategoryDelete) => {
   const res = products.filter(product => product.idCategory !== idCategoryDelete);
-  console.log('idCategoryDelete=' ,idCategoryDelete);
-  console.log('res', res);
   return res;
 };
 
@@ -37,6 +35,11 @@ const getProductsAfterSaveProduct = (products, payload) => {
   const idNewProduct = (products.length === 0) ? 0 : products[products.length - 1].id + 1;
   const newProduct = { id: idNewProduct, idCategory: idCategory, checked: false, name: nameProduct };
   const res = [...products, newProduct];
+  return res;
+};
+
+const getProductsAfterDeleteProduct = (products, deleteProduct) => {
+  const res = products.filter(product => product.id !== deleteProduct.id);
   return res;
 };
 
@@ -57,6 +60,10 @@ export default (state = initialState, action) => {
     case actionTypes.SET_PRODUCTS: return {
       ...state,
       products: action.payload,
+    };
+    case actionTypes.DELETE_PRODUCT: return {
+      ...state,
+      products: getProductsAfterDeleteProduct(state.products, action.payload),
     };
     default: return state;
   }
