@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
 } from 'react-native';
 import { connect } from 'react-redux';
 

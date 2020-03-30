@@ -58,6 +58,10 @@ export default (state = initialState, action) => {
       ...state,
       categories: action.payload,
     };
+    case actionTypes.DELETE_ALL_CATEGORIES: return {
+      ...state,
+      categories: [],
+    };
     default: return state;
   }
 };

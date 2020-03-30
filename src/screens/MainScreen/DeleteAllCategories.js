@@ -3,26 +3,26 @@ import {
   StyleSheet,
   View,
   Text,
+  TouchableOpacity,
 } from 'react-native';
 
-import ClassicButton from '../../common/components/buttons/ClassicButton';
 import colors from '../../common/constants/colors';
 
-const AddNewCategory = (props) => {
+const DeleteAllCategories = (props) => {
   const { onPress } = props;
 
   return (
     <View style={styles.containerButton}>
-      <ClassicButton
+      <TouchableOpacity
         onPress={onPress}
         style={styles.button}>
         <Text style={styles.nameButton}>
-          Добавить
+          Удалить
         </Text>
         <Text style={styles.nameButton}>
-          категорию
+          все
         </Text>
-      </ClassicButton>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -30,19 +30,24 @@ const AddNewCategory = (props) => {
 const styles = StyleSheet.create({
   containerButton: {
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: 20,
+    marginBottom: 80,
   },  
   nameButton: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: colors.SECONDARY,
+    color: colors.PRIMARY,
     textTransform: 'uppercase',
     marginRight: 5,
     marginLeft: 5,
   },
   button: {
     width: '70%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 50,
   },
 });
 
-export default AddNewCategory;
+export default DeleteAllCategories;
