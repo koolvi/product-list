@@ -4,23 +4,22 @@ import {
   View,
   Text,
 } from 'react-native';
-import { connect } from 'react-redux';
 
 import ClassicButton from '../common/components/buttons/ClassicButton';
 import ClassicButtonOutline from '../common/components/buttons/ClassicButtonOutline';
 import colors from '../common/constants/colors';
-import * as actionCreatorsThunkCategories from '../store/actions/categories/actionCreatorsThunk';
 
 
 const ConfirmDialog = (props) => {
-  const { navigation, onDeleteAllCategories } = props;
+  const { navigation, route } = props;
+  const { text, onConfirm } = route.params;
 
   return (
     <View style={styles.outsideContainer}>
       <View style={styles.container}>
         
         <Text style={styles.text}>
-          Удалить все категории ?
+          {text}
         </Text>
 
         <View style={styles.controlPanel}>
@@ -36,7 +35,7 @@ const ConfirmDialog = (props) => {
           <ClassicButton
             style={styles.button}
             onPress={() => {
-              onDeleteAllCategories();
+              onConfirm();
               navigation.goBack();
             }}
           >
@@ -64,9 +63,14 @@ const styles = StyleSheet.create({
     borderColor: colors.SELECTED,
     borderWidth: 1,
     margin: 25,
-    padding: 25,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 30,
+    paddingTop: 20,
   },
   text: {
+    lineHeight: 35,
+    textAlign: 'center',
     fontSize: 20,
     color: 'white',
   },
@@ -88,8 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapDispatchToProps = {
-  onDeleteAllCategories: actionCreatorsThunkCategories.deleteAllCategoriesAsync,
-};
-
-export default connect(null, mapDispatchToProps)(ConfirmDialog);
+export default ConfirmDialog;
