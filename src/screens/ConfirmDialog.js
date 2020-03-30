@@ -26,9 +26,7 @@ const ConfirmDialog = (props) => {
         <View style={styles.controlPanel}>
           <ClassicButtonOutline
             style={styles.button}
-            onPress={() => {
-              navigation.goBack();
-            }}
+            onPress={() => navigation.goBack()}
           >
             <Text style={{ color: colors.PRIMARY, ...styles.nameButton }}>
               Нет

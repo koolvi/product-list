@@ -15,6 +15,22 @@ import ConfirmDialog from './screens/ConfirmDialog';
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));
 const Stack = createStackNavigator();
 
+const cardStyleInterpolator = ({ current: { progress } }) => ({
+  cardStyle: {
+    opacity: progress.interpolate({
+      inputRange: [0, 0.5, 0.9, 1],
+      outputRange: [0, 0.25, 0.7, 1],
+    }),
+  },
+  overlayStyle: {
+    opacity: progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 0.5],
+      extrapolate: 'clamp',
+    }),
+  },
+});
+
 const App = () => {
   return (
     <Provider store={store}>
@@ -39,21 +55,7 @@ const App = () => {
               cardOverlayEnabled: true,
               headerMode: 'none',
               mode: 'modal',
-              cardStyleInterpolator: ({ current: { progress } }) => ({
-                cardStyle: {
-                  opacity: progress.interpolate({
-                    inputRange: [0, 0.5, 0.9, 1],
-                    outputRange: [0, 0.25, 0.7, 1],
-                  }),
-                },
-                overlayStyle: {
-                  opacity: progress.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0, 0.5],
-                    extrapolate: 'clamp',
-                  }),
-                },
-              }),
+              cardStyleInterpolator,
             }}
           />
           <Stack.Screen
@@ -65,21 +67,7 @@ const App = () => {
               cardOverlayEnabled: true,
               headerMode: 'none',
               mode: 'modal',
-              cardStyleInterpolator: ({ current: { progress } }) => ({
-                cardStyle: {
-                  opacity: progress.interpolate({
-                    inputRange: [0, 0.5, 0.9, 1],
-                    outputRange: [0, 0.25, 0.7, 1],
-                  }),
-                },
-                overlayStyle: {
-                  opacity: progress.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0, 0.5],
-                    extrapolate: 'clamp',
-                  }),
-                },
-              }),
+              cardStyleInterpolator,
             }}
           />
         </Stack.Navigator>
