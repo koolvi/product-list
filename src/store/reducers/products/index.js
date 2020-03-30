@@ -3,17 +3,7 @@ import * as actionTypesCategories from '../../actions/categories/actionTypes';
 
 
 const initialState = {
-  products: [
-    // { id: 0, idCategory: 0, checked: true, name: "Морковка, 2 шт" },
-    // { id: 1, idCategory: 0, checked: true, name: "Капуста белая, мал" },
-    // { id: 2, idCategory: 0, checked: true, name: "Луковичка, красный сорт" },
-    // { id: 3, idCategory: 0, checked: false, name: "Капуста" },
-    // { id: 4, idCategory: 1, checked: true, name: "Морковка, 2 шт" },
-    // { id: 5, idCategory: 1, checked: true, name: "Капуста белая, мал" },
-    // { id: 6, idCategory: 1, checked: true, name: "Луковичка, красный сорт" },
-    // { id: 7, idCategory: 2, checked: false, name: "Капуста" },
-    // { id: 8, idCategory: 2, checked: false, name: "Луковичка, красный сорт" },
-  ],
+  products: [],
 };
 
 const getProducts = (products, product) => {
@@ -65,7 +55,7 @@ export default (state = initialState, action) => {
       ...state,
       products: getProductsAfterDeleteProduct(state.products, action.payload),
     };
-    case actionTypes.DELETE_ALL_CATEGORIES: return {
+    case actionTypesCategories.DELETE_ALL_CATEGORIES: return {
       ...state,
       products: [],
     };

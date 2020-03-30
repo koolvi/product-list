@@ -42,7 +42,7 @@ const Card = (props) => {
       <Header
         colorContainer={color}
         nameCategory={category.name}
-        onPress={() => onDeleteCategory(category.id)}
+        onPress={() => onDeleteCategory(category)}
       />
 
       <View style={styles.container}>

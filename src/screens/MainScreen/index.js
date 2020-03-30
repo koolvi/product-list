@@ -22,7 +22,29 @@ const MainScreen = (props) => {
     onDeleteCategory,
     onSaveProducts,
     onDeleteProduct,
+    onDeleteAllCategories,
   } = props;
+
+  const handleConfirmDeleteCategory = category => {
+    const { id, name } = category;
+    navigation.navigate(
+      "ConfirmDialog",
+      {
+        text: `Удалить категорию: ${name} ?`,
+        onConfirm: () => onDeleteCategory(id),
+      },
+    );
+  };
+
+  const handleConfirmDeleteProduct = product => {
+    navigation.navigate(
+      "ConfirmDialog",
+      {
+        text: "Удалить продукт ?",
+        onConfirm: () => onDeleteProduct(product),
+      },
+    );
+  };
 
   return (
     <ScrollView keyboardShouldPersistTaps="handled" style={styles.main}>
@@ -38,9 +60,9 @@ const MainScreen = (props) => {
               color={category.color}
               allProducts={products.filter(objProduct => category.id === objProduct.idCategory)}
               onSetChecked={onSetChecked}
-              onDeleteCategory={onDeleteCategory}
+              onDeleteCategory={handleConfirmDeleteCategory}
               onSaveNewProduct={onSaveProducts}
-              onDeleteProduct={onDeleteProduct}
+              onDeleteProduct={handleConfirmDeleteProduct}
             />))
         )
       }
@@ -49,7 +71,7 @@ const MainScreen = (props) => {
       />
       {(categories.length !== 0)
         ? (<DeleteAllCategories
-            onPress={() => navigation.navigate("ConfirmDialog")}
+            onPress={() => navigation.navigate("ConfirmDialog", { text: "Удалить все категории ?", onConfirm: onDeleteAllCategories })}
           />)
         : null
       }
@@ -72,6 +94,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   onSetChecked: actionCreatorsThunkProducts.setCheckedProductAsync,
   onDeleteCategory: actionCreatorsThunkCategories.deleteCategoryAsync,
+  onDeleteAllCategories: actionCreatorsThunkCategories.deleteAllCategoriesAsync,
   onSaveProducts: actionCreatorsThunkProducts.saveProductsAsync,
   onDeleteProduct: actionCreatorsThunkProducts.deleteProductAsync,
 };
