@@ -8,13 +8,20 @@ import colors from '../../constants/colors';
 
 
 const ClassicButton = (props) => {
-  const { style, onPress, children } = props;
+  const {
+    style,
+    disabled = false,
+    onPress,
+    children,
+  } = props;
 
+  const styleForButton = (disabled) ? styles.disabledButton : styles.button
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={disabled ? null : onPress}
+      activeOpacity={disabled ? 1 : 0.5}
       style={{
-        ...styles.button,
+        ...styleForButton,
         ...style,
       }}
     >
@@ -26,6 +33,14 @@ const ClassicButton = (props) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.PRIMARY,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderRadius: 50,
+    height: 50,
+  },
+  disabledButton: {
+    backgroundColor: colors.SELECTED,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',

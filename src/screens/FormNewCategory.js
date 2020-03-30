@@ -39,13 +39,14 @@ const FormNewCategory = (props) => {
         </Text>
 
         <ClassicButton
+          disabled={(nameNewCategory.length === 0)}
           style={styles.button}
           onPress={() => {
             onSaveCategoryAsync(nameNewCategory);
             navigation.goBack();
           }}
         >
-          <Text style={styles.nameButton}>
+          <Text style={{ color: colors.SECONDARY, ...styles.nameButton }}>
             Добавить
           </Text>
           <Text style={{ color: colors.SECONDARY, ...styles.nameButton }}>
