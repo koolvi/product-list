@@ -42,6 +42,7 @@ const FormAddProduct = (props) => {
         </ClassicButtonOutline>
 
         <ClassicButton
+          disabled={(nameNewProduct.length === 0)}
           style={styles.button}
           onPress={() => {
             onSave(nameNewProduct);
