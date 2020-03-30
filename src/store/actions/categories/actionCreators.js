@@ -19,3 +19,9 @@ export const setCategories = categories => {
     payload: categories,
   };
 };
+
+export const deleteAllCategories = () => {
+  return {
+    type: actionTypes.DELETE_ALL_CATEGORIES,
+  };
+};

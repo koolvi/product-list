@@ -31,3 +31,15 @@ export const deleteCategoryAsync = idCategoryDelete => {
     AsyncStorage.setItem('products', productsStateStr);
   };
 };
+
+export const deleteAllCategoriesAsync = () => {
+  return (dispatch, getState) => {
+    dispatch(actionCreators.deleteAllCategories());
+    const { categories: categoriesState, products: productsState } = getState();
+
+    const categoriesStateStr = JSON.stringify(categoriesState);
+    AsyncStorage.setItem('categories', categoriesStateStr);
+    const productsStateStr = JSON.stringify(productsState);
+    AsyncStorage.setItem('products', productsStateStr);
+  };
+};

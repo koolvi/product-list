@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import EmptyBlockCategory from './EmptyBlockCategory';
 import Card from '../../common/components/Card/index';
 import AddNewCategory from './AddNewCategory';
+import DeleteAllCategories from './DeleteAllCategories';
 import * as actionCreatorsThunkProducts from '../../store/actions/products/actionCreatorsThunk';
 import * as actionCreatorsThunkCategories from '../../store/actions/categories/actionCreatorsThunk';
 
@@ -43,7 +44,16 @@ const MainScreen = (props) => {
             />))
         )
       }
-      <AddNewCategory onPress={() => navigation.navigate("FormNewCategory")}/>
+      <AddNewCategory
+        onPress={() => navigation.navigate("FormNewCategory")}
+      />
+      {(categories.length !== 0)
+        ? (<DeleteAllCategories
+            onPress={() => navigation.navigate("ConfirmDialog")}
+          />)
+        : null
+      }
+
     </ScrollView>
   );
 };

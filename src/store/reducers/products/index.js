@@ -65,6 +65,10 @@ export default (state = initialState, action) => {
       ...state,
       products: getProductsAfterDeleteProduct(state.products, action.payload),
     };
+    case actionTypes.DELETE_ALL_CATEGORIES: return {
+      ...state,
+      products: [],
+    };
     default: return state;
   }
 };

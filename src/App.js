@@ -10,9 +10,26 @@ import rootReducer from './store/rootReducer';
 import SplashScreen from './screens/SplashScreen';
 import MainScreen from './screens/MainScreen';
 import FormNewCategory from './screens/FormNewCategory';
+import ConfirmDialog from './screens/ConfirmDialog';
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));
 const Stack = createStackNavigator();
+
+const cardStyleInterpolator = ({ current: { progress } }) => ({
+  cardStyle: {
+    opacity: progress.interpolate({
+      inputRange: [0, 0.5, 0.9, 1],
+      outputRange: [0, 0.25, 0.7, 1],
+    }),
+  },
+  overlayStyle: {
+    opacity: progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 0.5],
+      extrapolate: 'clamp',
+    }),
+  },
+});
 
 const App = () => {
   return (
@@ -38,21 +55,19 @@ const App = () => {
               cardOverlayEnabled: true,
               headerMode: 'none',
               mode: 'modal',
-              cardStyleInterpolator: ({ current: { progress } }) => ({
-                cardStyle: {
-                  opacity: progress.interpolate({
-                    inputRange: [0, 0.5, 0.9, 1],
-                    outputRange: [0, 0.25, 0.7, 1],
-                  }),
-                },
-                overlayStyle: {
-                  opacity: progress.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0, 0.5],
-                    extrapolate: 'clamp',
-                  }),
-                },
-              }),
+              cardStyleInterpolator,
+            }}
+          />
+          <Stack.Screen
+            name={"ConfirmDialog"}
+            component={ConfirmDialog}
+            options={{
+              header: () => null,
+              cardStyle: { backgroundColor: 'transparent' },
+              cardOverlayEnabled: true,
+              headerMode: 'none',
+              mode: 'modal',
+              cardStyleInterpolator,
             }}
           />
         </Stack.Navigator>
