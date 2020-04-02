@@ -56,7 +56,6 @@ const MainScreen = (props) => {
       ref={scrollViewRef}
       onScroll={e => {
         contentOffsetRef.current = e.nativeEvent.contentOffset.y;
-        console.log('contentOffsetRef.current=', contentOffsetRef.current);
       }}
     >
       {/* <Title /> */}
