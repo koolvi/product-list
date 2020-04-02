@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -25,6 +25,9 @@ const MainScreen = (props) => {
     onDeleteAllCategories,
   } = props;
 
+  const scrollViewRef = useRef(null);
+  const contentOffsetRef = useRef(0);
+
   const handleConfirmDeleteCategory = category => {
     const { id, name } = category;
     navigation.navigate(
@@ -47,7 +50,14 @@ const MainScreen = (props) => {
   };
 
   return (
-    <ScrollView keyboardShouldPersistTaps="handled" style={styles.main}>
+    <ScrollView
+      keyboardShouldPersistTaps="handled"
+      style={styles.main}
+      ref={scrollViewRef}
+      onScroll={e => {
+        contentOffsetRef.current = e.nativeEvent.contentOffset.y;
+      }}
+    >
       {/* <Title /> */}
 
       {(categories.length === 0)
@@ -55,6 +65,7 @@ const MainScreen = (props) => {
         : (
           categories.map(category => (
             <Card
+              contentOffsetRef={contentOffsetRef}
               key={category.id}
               category={category}
               color={category.color}
@@ -63,6 +74,7 @@ const MainScreen = (props) => {
               onDeleteCategory={handleConfirmDeleteCategory}
               onSaveNewProduct={onSaveProducts}
               onDeleteProduct={handleConfirmDeleteProduct}
+              onScrollTo={params => scrollViewRef.current.scrollTo(params)}
             />))
         )
       }

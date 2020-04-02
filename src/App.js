@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
+import { StatusBar } from 'react-native';
 
 import rootReducer from './store/rootReducer';
 import SplashScreen from './screens/SplashScreen';
@@ -34,6 +35,9 @@ const cardStyleInterpolator = ({ current: { progress } }) => ({
 const App = () => {
   return (
     <Provider store={store}>
+      <StatusBar
+        backgroundColor="#000000"
+      />
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen

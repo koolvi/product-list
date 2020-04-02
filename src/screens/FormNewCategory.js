@@ -31,6 +31,10 @@ const FormNewCategory = (props) => {
           value={nameNewCategory}
           maxLength={12}
           onChange={text => setNameNewCategory(text)}
+          onSubmitEditing={() => {
+            onSaveCategoryAsync(nameNewCategory);
+            navigation.goBack();
+          }}
         />
 
         <Text style={styles.hint}>

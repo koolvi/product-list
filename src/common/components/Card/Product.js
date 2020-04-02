@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: 'row',
+    alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 10,
     flex: 1,
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   iconContainer: {
-    marginRight: 20,
+    marginRight: 10,
     marginLeft: 5,
   },
 });

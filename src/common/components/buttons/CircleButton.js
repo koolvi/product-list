@@ -15,6 +15,7 @@ const CircleButton = (props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
+      activeOpacity={1}
       style={{ backgroundColor, ...styles.button }}
     >
       {icon}

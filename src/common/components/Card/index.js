@@ -26,6 +26,7 @@ const renderProducts = (allProducts, onSetChecked, onDeleteProduct) => {
 
 const Card = (props) => {
   const {
+    contentOffsetRef,
     allProducts,
     category,
     color,
@@ -33,6 +34,7 @@ const Card = (props) => {
     onDeleteCategory,
     onSaveNewProduct,
     onDeleteProduct,
+    onScrollTo,
   } = props;
 
   const [isShowForm, setShowForm] = useState(false);
@@ -50,7 +52,7 @@ const Card = (props) => {
           {((allProducts.length === 0) && (!isShowForm))
             ? (
               <View style={styles.emptyCard}>
-                <Text style={styles.textEmptyCard}>...в этой категории ничего нет...</Text>
+                <Text style={styles.textEmptyCard}>нажмите "+" для добавления продукта</Text>
               </View>
             ) : (
               <>
@@ -61,8 +63,10 @@ const Card = (props) => {
 
           {(isShowForm)
             ? (<FormAddProduct
+                contentOffsetRef={contentOffsetRef}
                 onCancel={() => setShowForm(false)}
                 onSave={(name) => onSaveNewProduct(category.id, name)}
+                onScrollTo={onScrollTo}
               />)
               : null
           }

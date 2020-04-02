@@ -13,7 +13,7 @@ const IconNoFiles = () => {
     >
       <G
         transform="translate(0.000000,188.000000) scale(0.100000,-0.100000)"
-        fill={colors.SECONDARY}
+        fill={colors.SELECTED}
         stroke="none"
       >
         <Path d="M225 1838 c-4 -24 -5 -65 -3 -93 3 -48 4 -50 36 -53 30 -3 32 -1 32
