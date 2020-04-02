@@ -11,6 +11,8 @@ const Input = (props) => {
     placeholder,
     maxLength,
     onChange,
+    onSubmitEditing,
+    ...rest
   } = props;
 
   return (
@@ -22,6 +24,8 @@ const Input = (props) => {
       placeholder={placeholder}
       placeholderTextColor="#838383"
       autoFocus
+      onSubmitEditing={onSubmitEditing}
+      {...rest}
     />
   );
 };

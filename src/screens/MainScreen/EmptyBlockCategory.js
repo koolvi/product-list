@@ -6,13 +6,14 @@ import {
 } from 'react-native';
 
 import IconNoFiles from './IconNoFiles';
+import colors from '../../common/constants/colors';
 
 
 const EmptyBlockCategory = () => {
   return (
   <View style={styles.container}>
     <IconNoFiles />
-    <Text style={styles.text}>..пусто..</Text>
+    <Text style={styles.text}>список категорий пуст</Text>
   </View>
   );
 };
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
   text: {
     marginTop: 20,
     fontSize: 20,
-    color: '#2b2b2b',
+    color: colors.SELECTED,
   },
 });
 
